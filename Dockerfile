@@ -1,5 +1,5 @@
 FROM python:3.8
-RUN pip install awscli
+RUN pip install awscli grpcio tensorflow-serving-api
 
 RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp && \
     mv /tmp/eksctl /usr/local/bin && \
@@ -13,5 +13,7 @@ RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/late
     curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.6.8 TARGET_ARCH=x86_64 sh - && \
     export PATH=$PWD/istio-1.6.8/bin:$PATH 
 
+COPY get_model_metadata.py /
+COPY get_model_prediction.py /
 
 CMD bash
