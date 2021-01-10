@@ -15,5 +15,5 @@ RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/late
 
 COPY get_model_metadata.py /
 COPY get_model_prediction.py /
-
+COPY create-cluster.sh /
 CMD bash
